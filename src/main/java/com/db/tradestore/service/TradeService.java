@@ -8,4 +8,5 @@ public interface TradeService {
 	public List<Trade> findAllTrades();
 	public Trade findByTradeId(String tradeId);
 	public void validateAndSaveTrade(Trade trade);
+	public void updateTrade(String tradeId, Trade trade);
 }

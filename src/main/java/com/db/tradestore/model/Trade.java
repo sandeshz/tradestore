@@ -3,7 +3,6 @@ package com.db.tradestore.model;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -62,7 +61,7 @@ public class Trade {
 	public void setCreatedDate(LocalDate createdDate) {
 		this.createdDate = createdDate;
 	}
-	public String isExpired() {
+	public String getExpired() {
 		return expired;
 	}
 	public void setExpired(String expired) {

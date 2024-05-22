@@ -13,10 +13,11 @@ import com.db.tradestore.repository.TradeRepository;
 import com.db.tradestore.service.TradeService;
 
 @SpringBootTest
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TradeServiceImplTest {
 
 	@Autowired
-	public TradeRepository tradeRepository;
+	public TradeRepository tradeRepositoryTest;
 
 	@Autowired
 	public TradeService tradeService;
@@ -24,21 +25,29 @@ public class TradeServiceImplTest {
 	@Test
 	public void testFindByTradeId() {
 		Trade trade = new Trade();
-		trade.setTradeId("T22");
-		trade.setVersion(7);
+		trade.setTradeId("T9");
+		trade.setVersion(3);
 		trade.setCounterPartyId("CP-5");
-		trade.setBookId("B8");
+		trade.setBookId("B2");
 		trade.setMaturityDate(LocalDate.of(2024, 12, 31));
 		trade.setCreatedDate(LocalDate.now());
 		trade.setExpired("N");
-		tradeRepository.save(trade);
+		tradeRepositoryTest.save(trade);
 
-		Trade foundTrade = tradeService.findByTradeId("T22");
-		assertEquals("T22", foundTrade.getTradeId());
-		assertEquals("B8", foundTrade.getBookId());
+		Trade foundTrade = tradeService.findByTradeId("T9");
+		assertEquals("T9", foundTrade.getTradeId());
+		assertEquals("B2", foundTrade.getBookId());
 		assertEquals("CP-5", foundTrade.getCounterPartyId());
-		assertEquals(7, foundTrade.getVersion());
+		assertEquals(3, foundTrade.getVersion());
 		assertTrue(foundTrade.getMaturityDate() instanceof LocalDate, "Maturity date is not of type LocalDate");
 		assertNotNull(foundTrade);
 	}
+
+//	@Test
+//	public void testValidateAndSaveTrade() {}
+
+//	@AfterAll
+//	public void cleanup() {
+//		tradeRepositoryTest.deleteAll();
+//	}
 }
